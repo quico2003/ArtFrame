@@ -1,41 +1,46 @@
 # ArtFrame
-Aplicacion web en la cual un artista podra logearse para poder crear su propia pagina web donde mostrar su trabajo, obras de arte, informacion personal....
-
+Aplicacion web para un artista, este puede crear sus propias obras de arte para asi poderlas mostrar a internet desde la pagina web.
 
 ## art_frame_db
 
 ### users
 
--id
--first_name (primer nombre del usuario, editable desde el apartado profile)
--last_name (Segundo nombre del usario, editable desde el apartado profile)
--email (Email del usuario, unico por lo tanto de mucha utilidad para diferenciar o incluso enviar emails de verificación)
--url_name (Terminacion de el apartado de cada usuario EJ: www.ArtFrame.com/jose este seria el apartado de Jose)
--biography (Biografia del artista, editable desde el apartado profile)
--password
--created_at (Fecha de creacion del usuario)
--updated_at (Ultima vez que se ha modificado el usuario)
--deleted_at(El usuario puede borrarse a si mismo, metodo de cancelacion de la subscripción)
--token
--expiredate
+| Campo          | Tipo de dato        | Descripción                  |
+| -------------- | ------------------- | ---------------------------- |
+| id             | INT / SERIAL (PK)   | ID único del usuario         |
+| username       | VARCHAR(50) UNIQUE  | Nombre de usuario            |
+| password\_hash | VARCHAR(255)        | Contraseña (encriptada)      |
+| email          | VARCHAR(100) UNIQUE | Correo electrónico           |
+| created\_at    | TIMESTAMP           | Fecha de creación de usuario |
+| updated\_at    | TIMESTAMP           | Fecha de creación de usuario |
+| deleted_\at    | TIMESTAMP           | Fecha de creación de usuario |
+| token          | TIMESTAMP           | Token del para la sesion     |
+| expiredate     | TIMESTAMP           | Fecha de expiracion del token|
 
 ### artworks
 
--id
--user_id
--title
--description
--image_url
--Type ENUM for type of art ('painting', 'sculpture', 'drawing', 'photography', 'digital', 'other')
--price
--created_at
--updated_at
--deleted_at
+| Campo          | Tipo de dato            | Descripción                              |
+| -------------- | ----------------------- | ---------------------------------------- |
+| id             | INT / SERIAL (PK)       | ID único de la obra                      |
+| user_id        | INT                     | Relacion con el artista                  |
+| category_id    | INT                     | Relacion con la category                 |
+| title          | VARCHAR(255)            | Título de la obra                        |
+| description    | TEXT                    | Descripción o historia de la obra        |
+| image\_url     | VARCHAR(255)            | Ruta/URL de la imagen de la obra         |
+| creation\_date | DATE                    | Fecha en que se creó la obra             |
+| dimensions     | VARCHAR(100)            | Ejemplo: "100cm x 70cm"                  |
+| medium         | VARCHAR(100) o ENUM     | Técnica (óleo, acrílico, acuarela, etc.) |
+| price          | DECIMAL(10,2), NULLABLE | Precio (si está a la venta)              |
+| is\_available  | BOOLEAN                 | ¿Está disponible o vendida?              |
+| created\_at    | TIMESTAMP               | Fecha de registro en la plataforma       |
+| updated\_at    | TIMESTAMP               | Última actualización                     |
+| deleted\_at    | TIMESTAMP               | Puede eliminarse                         |
 
-### userpages
 
-id
-user_id
-theme
-image
-... (Todo lo que se pueda imaginar que se pueda modificar en una landingPage, tambien si el usuario es premium tiene la opcion de tener mas de una pagina asta un total maximo como por ejemplo 5, esto le puede permitir que tenga una landingPage, una pagina con todos sus cuadros y mas info sobre ellos y algun tipo de pagina mas como informacion personal o eventos que realizara dentro de poco)
+### categories
+
+| Campo       | Tipo de dato      | Descripción            |
+| ----------- | ----------------- | ---------------------- |
+| id          | INT / SERIAL (PK) | ID de categoría        |
+| name        | VARCHAR(100)      | Nombre de la categoría |
+| description | TEXT              | Descripción opcional   |
