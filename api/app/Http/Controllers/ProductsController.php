@@ -2,42 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginUserRequest;
-use App\Http\Requests\UserRequest;
-use App\Services\v1\AdminService;
+use App\Http\Requests\ProductRequest;
+use App\Services\v1\ProductsService;
 use Exception;
-use Hash;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class ProductsController extends Controller
 {
     public function __construct(
-        private AdminService $adminService
-    ){
+        private ProductsService $productsService
+    ) {
     }
 
-    public function register(UserRequest $request): JsonResponse
+    public function store(ProductRequest $request): JsonResponse
     {
         try {
+            $user = Auth::user();
             $input = $request->validated();
-            $input["password"] = Hash::make($input["password"]);
-            $user = $this->adminService->register($input);
-            return response()->json($user, 200);
-        } catch (Exception $e) {
-            return response()->json([
-                "message" => "Something went wrong",
-                "error" => $e->getMessage()
-            ]);
-        }
-    }
-
-     public function login(LoginUserRequest $request): JsonResponse
-    {
-        try {
-            $input = $request->validated();
-            $login = $this->adminService->login($input);
-            return response()->json($login, 200);
+            $product = $this->productsService->create($input, $user);
+            return response()->json($product, 200);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Something went wrong",
@@ -46,4 +30,18 @@ class AdminController extends Controller
         }
     }
     
+    public function getAll(ProductRequest $request): JsonResponse
+    {
+        try {
+            $user = Auth::user();
+            $input = $request->validated();
+            $product = $this->productsService->create($input, $user);
+            return response()->json($product, 200);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Something went wrong",
+                "error" => $e->getMessage()
+            ]);
+        }
+    }
 }

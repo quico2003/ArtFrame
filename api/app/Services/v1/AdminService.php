@@ -33,6 +33,7 @@ class AdminService
     public function login (array $input): array|bool
     {
         try {
+            $input["is_admin"] = 1;
             if (Auth::attempt($input)) {
                 $user = Auth::user();
                 $token = $user->createToken("admin-token", [], now()->addDay())->plainTextToken;

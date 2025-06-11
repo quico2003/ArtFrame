@@ -31,6 +31,7 @@ class UserService
     public function login (array $input): array|bool
     {
         try {
+            $input["is_admin"] = 0;
             if (Auth::attempt($input)) {
                 $user = Auth::user();
                 $token = $user->createToken("user-token", [], now()->addDay())->plainTextToken;

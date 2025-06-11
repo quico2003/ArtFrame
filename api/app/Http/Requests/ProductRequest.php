@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CategoryRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,11 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'description' => "required|string",
+            "category_id" => "required|numeric",
+            "title" => "required|string|min:8",
+            "description" => "required|string",
+            "image" => "required",
+            "year" => "required",
         ];
     }
 
@@ -38,13 +41,16 @@ class CategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'A title is required',
-            "name.string" => "Name should be a string",
-            "name.max" => "Name max length must be 255",
+            'category_id.required' => 'A category is required',
+            'category_id.decimal' => 'Category shoud be a number',
+            'title.required' => 'A title is required',
+            "title.string" => "Title should be a string",
+            "tile.max" => "Title min length must be 8",
             'description.required' => 'A message is required',
             "description.string" => "Description should be a string",
+            "image.required" => "A image is required",
+            "year.required" => "A year is required",
         ];
 
     }
 }
-
