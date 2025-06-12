@@ -4,7 +4,6 @@ namespace App\Services\v1;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Repositories\v1\ProductsRepositories;
 use App\Repositories\v1\ProductsRepository;
 use Exception;
 use Log;

@@ -1,6 +1,6 @@
 import { Button, Card, Image } from "react-bootstrap";
 import FormControlPassword from "../../../../Components/Form/FormControl/FormControlPassword";
-import logo from "../../../../Assets/images/Logo/logo-maximised-user.png";
+import logo from "../../../../Assets/images/Logo/logo-maximised.png";
 import { useContext, useState } from "react";
 import { StringsContext } from "../../../../Context/strings.context";
 import useRequest from "../../../../Hooks/useRequest";

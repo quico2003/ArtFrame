@@ -8,7 +8,7 @@ import { Paths } from "../../../../Constants/paths.constants";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Views } from "../../../../Constants/views.constants";
 import { StorageKeys } from "../../../../Constants/storekeys.constants";
-import logo from "../../../../Assets/images/Logo/logo-maximised-admin.png"
+import logo from "../../../../Assets/images/Logo/logo-maximised.png"
 import FormControlPassword from "../../../../Components/Form/FormControl/FormControlPassword";
 import { EmailRegex } from "../../../../Utils/Regex";
 import { validateLogin } from "../../../../Config/GeneralFunctions";

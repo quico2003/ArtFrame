@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import logo from "../../../Assets/images/Logo/logo-maximised-user.png"
+import logo from "../../../Assets/images/Logo/logo-maximised.png"
 import LanguageSelector from "../../../Components/LanguageSelector/LanguageSelector";
 import { StringsContext } from "../../../Context/strings.context";
 

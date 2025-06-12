@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import ToggleSideBarButton from "../../../Components/ToggleSideBarButton/ToggleSideBarButton";
 import { Configuration } from "../../../Config/app.config";
 
-import logoMaximisedAdmin from "../../../Assets/images/Logo/logo-maximised-admin.png";
-import logoMaximisedUser from "../../../Assets/images/Logo/logo-maximised-user.png";
+import logoMaximised from "../../../Assets/images/Logo/logo-maximised.png";
 import logoMinimised from "../../../Assets/images/Logo/logo-minimised.png";
 
 const SideBarBrand = ({ role }) => {
@@ -11,11 +10,6 @@ const SideBarBrand = ({ role }) => {
 
   const { sidebar } = useSelector((state) => state.Config);
   const expanded = sidebar === "maximised";
-
-  const selectedLanguage = localStorage.getItem("ADMIN_LANGUAGE_SELECTED");
-
-  // Determinar qué imagen utilizar según el idioma seleccionado
-  let logoMaximised = role ? logoMaximisedUser : logoMaximisedAdmin;
 
   return (
     <div
