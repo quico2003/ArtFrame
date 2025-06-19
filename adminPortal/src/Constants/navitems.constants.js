@@ -16,50 +16,27 @@ export const NavItemsAdmin = () => {
   const ViewStrings = strings.navBar;
 
   const items = [
-    {
-      id: "dashboard_section",
-      title: ViewStrings.Dashboard,
-      items: [Paths[Views.homeAdmin]],
-    },
-    {
-      id: "product_section",
-      title: ViewStrings.ControlPanelProducts,
-      items: [
-        Paths[Views.categories],
-        Paths[Views.products]
-      ],
-    },
-    {
-      id: "users_section",
-      title: ViewStrings.ControlPanelUsers,
-      items: [
-        Paths[Views.users]
-      ],
-    },
+    // {
+    //   id: "dashboard_section",
+    //   title: ViewStrings.Dashboard,
+    //   items: [Paths[Views.homeAdmin]],
+    // },
+    // {
+    //   id: "product_section",
+    //   title: ViewStrings.ControlPanelProducts,
+    //   items: [
+    //     Paths[Views.categories],
+    //     Paths[Views.products]
+    //   ],
+    // },
+    // {
+    //   id: "users_section",
+    //   title: ViewStrings.ControlPanelUsers,
+    //   items: [
+    //     Paths[Views.users]
+    //   ],
+    // },
   ];
   return items;
 };
-export const NavItemsUser = () => {
-  const { strings } = useContext(StringsContext);
-  const ViewStrings = strings.navBar;
 
-  const items = [
-    {
-      id: "dashboard_section",
-      title: ViewStrings.Dashboard,
-      items: [Paths[Views.homeUser]],
-    },
-    {
-      id: "client_section",
-      title: ViewStrings.ControlPanelClients,
-      items: [Paths[Views.clients]],
-    },
-    {
-      id: "schedule_section",
-      title: ViewStrings.ControlPanelSchedule,
-      items: [Paths[Views.schedule]],
-    },
-   
-  ];
-  return items;
-};

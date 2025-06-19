@@ -5,7 +5,7 @@ import ProfileDropdown from "./Components/ProfileDropdown";
 
 const { height } = Configuration.theme.general.navbar;
 
-const UpperNavbar = ({role}) => {
+const UpperNavbar = () => {
   return (
     <div className="bg-transparent">
       {/* Content */}
@@ -23,7 +23,7 @@ const UpperNavbar = ({role}) => {
           <LanguageSelector showFlag={true} />
 
           {/* Profile */}
-          <ProfileDropdown role={role} />
+          <ProfileDropdown />
         </div>
       </div>
     </div>

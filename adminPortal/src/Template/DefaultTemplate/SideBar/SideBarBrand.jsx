@@ -5,7 +5,7 @@ import { Configuration } from "../../../Config/app.config";
 import logoMaximised from "../../../Assets/images/Logo/logo-maximised.png";
 import logoMinimised from "../../../Assets/images/Logo/logo-minimised.png";
 
-const SideBarBrand = ({ role }) => {
+const SideBarBrand = () => {
   const { isMobileView } = useSelector((state) => state.Config);
 
   const { sidebar } = useSelector((state) => state.Config);

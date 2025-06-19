@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Configuration } from "../../Config/app.config";
-import { EndpointsAdmin, EndpointsUser, getEndpoint } from "../../Constants/endpoints.contants";
+import { EndpointsAdmin } from "../../Constants/endpoints.contants";
 import { StorageKeys } from "../../Constants/storekeys.constants";
 import { UserContext } from "../../Context/user.context";
 import useRequest from "../../Hooks/useRequest";
@@ -16,7 +16,7 @@ import { toggleUserAvatar, toggleUserEmail, toggleUserName } from "../../Redux/a
 const FOOTER_HEIGHT = Configuration.theme.general.footer.height;
 const NAVBAR_HEIGHT = Configuration.theme.general.navbar.height;
 
-const DefaultTemplate = ({ children, role }) => {
+const DefaultTemplate = ({ children }) => {
   const request = useRequest();
   const dispatch = useDispatch();
   const { menuOpen } = useSideBar();
@@ -31,20 +31,10 @@ const DefaultTemplate = ({ children, role }) => {
   const { backgroundColor } = Configuration.theme.general.app;
 
   useEffect(() => {
-    if (role) checkUser();
-    else checkAdmin();
-  }, [role]);
+    checkUser();
 
-  const checkAdmin = () => {
-    request("get", getEndpoint(EndpointsAdmin.Auth.checkAdmin)).then((res) => {
-      const { token, email, avatar, name } = res.data;
-      dispatch(toggleAdminName(name));
-      dispatch(toggleAdminEmail(email));
-      dispatch(toggleAdminAvatar(avatar));
-      localStorage.setItem(StorageKeys.EMAIL, email);
-      localStorage.setItem(StorageKeys.TOKEN, token);
-    });
-  };
+  }, []);
+
   const checkUser = () => {
     request("get", getEndpoint(EndpointsUser.Auth.checkUser)).then((res) => {
       const { token, email, avatar, firstName, lastName } = res.data;
@@ -79,7 +69,7 @@ const DefaultTemplate = ({ children, role }) => {
           left: calculateSideBarWidth(),
         }}
       >
-        <SideBar role={role} />
+        <SideBar />
       </div>
       <div
         className={`w-100 ${backgroundColor}`}

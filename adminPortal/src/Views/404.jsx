@@ -43,16 +43,11 @@ export const NotFound = () => {
 
   useEffect(() => {
     let token = localStorage.getItem(StorageKeys.TOKEN);
-    let role = localStorage.getItem(StorageKeys.ROLE);
 
     if (token) {
-      if (role) {
-        setHomePath(Paths[Views.homeUser].path);
-      }else {
-        setHomePath(Paths[Views.homeAdmin].path);
-      }
+      
     }else{
-      setHomePath(Paths[Views.landing].path);
+      setHomePath(Paths[Views.login].path);
     }
   }, []);
 

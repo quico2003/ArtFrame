@@ -5,14 +5,14 @@ import { BsChevronCompactDown, BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Configuration } from "../../../Config/app.config";
-import { NavItemsAdmin, NavItemsUser } from "../../../Constants/navitems.constants";
+import { NavItemsAdmin } from "../../../Constants/navitems.constants";
 import useSideBar from "../../../Hooks/useSideBar";
 import { setCurrentNavItemMenuSelectedAction } from "../../../Redux/actions/ConfigActions";
 import SideBarBrand from "./SideBarBrand";
 import SideBarItem from "./SideBarItem";
 import { StringsContext } from "../../../Context/strings.context";
 
-const SideBar = ({ role }) => {
+const SideBar = () => {
   const { strings } = useContext(StringsContext);
   const ViewStrings = strings.navBar;
 
@@ -43,9 +43,7 @@ const SideBar = ({ role }) => {
   );
 
   const renderPrivacyPolicy = () => {
-
-    if (role) return "/my-user/privacy-policy";
-    else return "/my-admin/privacy-policy";
+    return "/my-admin/privacy-policy";
   }
 
   const renderDropdowns = (item, idx) => {
@@ -127,7 +125,7 @@ const SideBar = ({ role }) => {
         <div>
           {/* Brand */}
           <div className="h-auto">
-            <SideBarBrand role={role}/>
+            <SideBarBrand />
           </div>
 
           {/* Items */}
@@ -138,36 +136,7 @@ const SideBar = ({ role }) => {
                 height: `calc(100vh - ${85 + 50}px`,
               }}
             >
-              {role ? (
-                NavItemsUser().map((section, idx) => {
-                  const sectionClassName = classNames("w-100", {
-                    "mb-3": expanded || isMobileView,
-                  });
-
-                  return (
-                    <div key={section.id || idx} className={sectionClassName}>
-                      {Configuration.theme.general.sidebar.groupSideBarItems &&
-                        (expanded || isMobileView) && (
-                          <small
-                            className="mb-2 px-2 d-flex w-100 mb-1 p-1 border-bottom border-top"
-                            style={{ color: "#999" }}
-                          >
-                            {section.title}
-                          </small>
-                        )}
-                      <div className="px-2">
-                        <Accordion activeKey={currentNavItemSelected} key={idx}>
-                          {section.items.map((item, itemIdx) =>
-                            item.children
-                              ? renderDropdowns(item, itemIdx)
-                              : renderItem(item, itemIdx)
-                          )}
-                        </Accordion>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
+              {
                 NavItemsAdmin().map((section, idx) => {
                   const sectionClassName = classNames("w-100", {
                     "mb-3": expanded || isMobileView,
@@ -196,7 +165,7 @@ const SideBar = ({ role }) => {
                     </div>
                   );
                 })
-              )}
+              }
             </div>
           </div>
         </div>
